@@ -23,5 +23,6 @@ const taskSchema=new Schema({
         type:Schema.Types.ObjectId,
         ref:'User'
     },
+    progress:Number,
 });
 module.exports=mongoose.model('Task',taskSchema);

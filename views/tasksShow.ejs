@@ -1,4 +1,7 @@
 <% layout('layout/boilerplate.ejs') %>
+
+<link rel="stylesheet" href="/stylesheets/progress.css">
+<% let flag=0; %> 
 <div class="row mb-5">
     <div class="col-6 offset-3">
         <div class="card mb-3" >
@@ -13,9 +16,78 @@
                     <li class="list-group-item text-muted">POSTED BY - <%=task.author.username%></li>
                     <li class="list-group-item text-muted"><%=task.days%>days</li>
                   </ul>
+                 
+                  <% for( let apply of task.applier ) { %>
+                    <% if(apply.email==currentUser.email){ %>
+                      <% flag=1 %> 
+                    <% } %>
+                  <% } %>
+                    
+                  <% if(flag!==1){ %> 
                   <div class="card-body">
                     <a href="/apply/<%=task._id%>/hire/<%=id%>" class="card-link btn btn-info">APPLY NOW</a>
-                    </div>
-                </div>
+                    </div>             
+                <% } %>
+                
+                
+                     
+              
+            </div>
+            </div>
 </div>
 </div>
+<div class="prog my-5">
+
+<% if (flag==1) { %>
+ 
+
+<form action="" method="post" class="form">
+  <!-- Progress bar -->
+  <div class="progressbar">
+    
+    <div class="progress" id="progress"></i></div>
+    
+    <div
+      class="progress-step progress-step progress-step-active"
+      data-title="Assign"
+    ><i class="fas fa-hands-helping"></i></div>
+   
+    <div class="progress-step <%= task.progress>=1 ? 'progress-step-active' :'' %>  " data-title="Verification"><i class="fas fa-user-check"></i></div>
+    <div class="progress-step <%= task.progress>=2 ? 'progress-step-active' :'' %>" data-title="OnProgress"><i class="fas fa-toolbox"></i></div>
+    <div class="progress-step <%= task.progress>=3 ? 'progress-step-active' :'' %>" data-title="Completed"><i class="fas fa-check-circle"></i></div>
+  </div>
+
+  <!-- Steps -->
+  <div class="form-step form-step-active">
+    
+  
+     
+  <% if (task.progress <3) { %>
+      <a href="/progress/<%=task._id%>" class="btn btn-next width-50 ml-auto">Next</a>
+      <% } %>
+  </div>
+
+</form>
+<% } %>
+</div>
+<script>
+  const nextBtns = document.querySelectorAll(".btn-next");
+const progress = document.getElementById("progress");
+const formSteps = document.querySelector(".form-step");
+
+const progressSteps = document.querySelectorAll(".progress-step");
+nextBtns.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    formStepsNum++;
+    updateProgressbar();
+
+    e.preventDefault();
+  });
+});
+function updateProgressbar() {
+
+  const progressActive = document.querySelectorAll(".progress-step-active");
+progress.style.width =
+    ((progressActive.length - 1) / (progressSteps.length - 1)) * 100 + "%";
+}
+</script>

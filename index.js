@@ -59,6 +59,9 @@ app.use((req,res,next)=>{
 app.use('/',userRoute)
 app.use('/earn',Feeds)
 app.use('/earn/:id/reviews',Reviews)
+
+
+
 app.get('/account',async(req,res)=>{
     if(!req.isAuthenticated()){
         req.flash('error','You must login first')
@@ -99,6 +102,7 @@ app.post('/earn/:id/skills',async(req,res)=>{
     req.flash('success','Skill is been added');
     res.redirect( '/account');
 })
+
 app.get('/tasks',async(req,res)=>{
     const tasks = await Task.find({})
     res.render('task.ejs',{tasks})
@@ -113,11 +117,7 @@ app.get('/tasks/:taskId',async(req,res)=>{
     }
     const id=req.user._id;
     const {taskId}=req.params;
-    const task = await Task.findById(taskId).populate('author');
-    if(!task){
-        req.flash('error','Cannot find a Post');
-        return res.redirect('/tasks',{task,id})
-    }
+    const task = await Task.findById(taskId).populate('author').populate('applier');
     res.render('tasksShow.ejs',{task,id})
 })
 app.post('/tasks',upload.array('image'),async(req,res)=>{
@@ -129,10 +129,12 @@ app.post('/tasks',upload.array('image'),async(req,res)=>{
     const user = await User.findById(id);
     const task = new Task(req.body.task);
     task.image= req.files.map(f=>({url:f.path,filename:f.filename}))
+    task.progress=0;
     task.author=req.user._id;
     user.task.push(task);
     await task.save();
     await user.save()
+    console.log(task)
     req.flash('success','Successfully Post is created')
     res.redirect(`/tasks`)
 })
@@ -144,6 +146,18 @@ app.get('/apply/:taskId/hire/:applyId',async (req,res)=>{
     req.flash('success','You have successfully applied')
     res.redirect('/tasks')
     
+})
+app.get('/progress/:id',async(req,res)=>{
+    const {id}=req.params;
+    const task = await Task.findById(id);
+    task.progress+=1;
+    if(task.progress>3){
+        task.progress=4;
+    }
+    console.log(task.progress)
+    await task.save();
+    res.redirect(`/tasks/${id}`);
+
 })
 app.get('/application/:id',async(req,res)=>{
     const {id} = req.params;
@@ -164,11 +178,16 @@ app.post('/hired/:id/:taskId',async(req,res)=>{
     const user = await User.findById(id);
     const task = await Task.findById(taskId);
     task.guide=guide;
+    task.progress=0;
+    console.log(task)
     user.given.push(task);
     await task.save();
     await user.save();
     req.flash('success','message is sent to the user');
     res.redirect('/earn');
+})
+app.get('/progress',(req,res)=>{
+    res.render("progress")
 })
 app.get('/sortskill/:body',async(req,res)=>{
     const {body} = req.params;
