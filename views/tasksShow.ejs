@@ -1,0 +1,21 @@
+<% layout('layout/boilerplate.ejs') %>
+<div class="row mb-5">
+    <div class="col-6 offset-3">
+        <div class="card mb-3" >
+            <div class="card-body">
+              <img src="<%= task.image[0].url %>" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h1 class="card-title"><%=task.title%></h1>
+                    <p class="card-text"><%=task.desc%></p>
+                  </div>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item text-muted"><%=task.stipend%> STIPEND</li>
+                    <li class="list-group-item text-muted">POSTED BY - <%=task.author.username%></li>
+                    <li class="list-group-item text-muted"><%=task.days%>days</li>
+                  </ul>
+                  <div class="card-body">
+                    <a href="/apply/<%=task._id%>/hire/<%=id%>" class="card-link btn btn-info">APPLY NOW</a>
+                    </div>
+                </div>
+</div>
+</div>

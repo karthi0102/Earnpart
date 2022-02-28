@@ -1,0 +1,157 @@
+<% layout('layout/boilerplate.ejs') %>
+<div class="container">
+<div class="row mb-5">
+    <div class="col-6">
+        <div class="card mb-3">
+          <% user.image.forEach((img,i) => { %>
+              <img src="<%= img.url %>" class="card-img-top" alt="...">
+            <% }) %>
+            <div class="card-body">
+              <h5 class="card-title"><%=user.username%></h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"><%=user.email%></li>
+              <li class="list-group-item"><%=user.phone%></li>
+              <li class="list-group-item"><%=user.qualification%></li>
+              <li class="list-group-item text-muted">Account balance : 0</li>
+            </ul>
+
+          </div>
+    </div>
+
+
+
+
+<div class="col-6">
+  <% if(user.skill.length){ %>
+    <h2 class="text-center">SKILL SET</h2>
+    <%}%>
+  <div class="card mb-3">
+    <div class="card-body">
+      <ul class="list-group list-group-flush">
+  <% for(let skill of user.skill){%>
+    <li class="list-group-item"><%=skill.body%></li>
+    <%}%>
+    <li class="list-group-item">
+    <form action="/earn/<%=user._id%>/skills" method="POST" class='mb-3 validate-form' novalidate>
+      <div class="px-3 ">
+        <label class="form-label" for="skill"> Add skills</label>
+        <input type="text" name="skills[body]" id="skill">   <span><button class="btn btn-success"><i class="fas fa-plus"></i></button></span>
+       
+      </div>
+      </form>
+    </li>
+      </ul>
+      </div>
+      </div>
+
+<h1 class="text-center">QR CODE</h1>
+    <div class="col-6 offset-4 px-5">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://account/&amp;size=100x100"  alt="">
+    </div>
+    </div>
+</div>
+
+<div class="container mb-5">
+  <div class="row">
+    
+  </div>
+</div>
+<% if(user.feeds.length){%>
+<div class="container">
+  <h2 class="text-center">Posts</h2>
+  <div class="row">
+      <% for(feed of user.feeds) {%>
+        <div class="col-lg-4 col-md-12">
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <% feed.image.forEach((img,i) => { %>
+            <div class="carousel-item <%= i===0 ?'active' :'' %>">
+              <img src="<%= img.url %>" class="d-block w-100" alt="...">
+            </div>
+            <% }) %>
+          </div>
+          <% if( feed.image.length > 1){ %> 
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+          <%}%> 
+        </div>
+          <div class="card mb-3" >
+              <div class="card-body">
+                  <div class="card-body">
+                      <p class="card-text"><%=feed.desc%></p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item text-muted"><%=feed.author.username%></li>
+                      <li class="list-group-item text-muted"><%=feed.duration%>days</li>
+    
+                    </ul>
+                    <div class="card-body">
+                      <a href="/earn/<%=feed._id%>/edit" class="card-link btn btn-info">Edit</a>
+                      <form class="d-inline" action="/earn/<%=feed._id%>?_method=DELETE" method="POST">
+                          <button class="btn btn-danger">Delete</button>
+                      </form>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+    <%}%>
+  </div>
+</div>
+<div>
+</div>
+<%}%>
+<%if(user.task.length){%>
+<div class="container">
+  <div class="row">
+    <h2 class="text-center">MY TASKS</h2>
+    <% for(let task of user.task){ %>
+      <div class="col-6 mt-3">
+      <div class="card mb-5">
+        <img src="<%=task.image[0].url%>" class="card-img-top" alt="">
+        <div class="card-body">
+          <div class="card-body">
+            <h1 class="card-title"><%=task.title%></h1>
+            <p class="card-text"><%=task.desc%></p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item text-muted"><%=task.stipend%> STIPEND</li>
+            <li class="list-group-item text-muted">POSTED BY - <%=task.author.username%></li>
+            <li class="list-group-item text-muted"><%=task.days%>days</li>
+          </ul>
+    <div class="card-body">
+      <a href="/application/<%=task._id%>" class="card-link btn btn-info">APPLIERS</a>
+      </div>
+  </div>
+</div>
+</div>
+</div>
+      <%}%>
+  </div>
+</div>
+<%}%>
+<%if(user.given.length){%>
+<div class="container">
+  <div class="row">
+    <h2 class="text-center">HIRED TASKS</h2>
+      <% for(let t of user.given){ %>
+        <div class="col-4">
+        <div class="card mb-3">
+          <div class="card-body">
+            <h2 class="card-title"><%=t.title%></h2>
+            <p class="card-text"><%=t.guide%></p>
+            <p class="card-text"><%=t.desc%></p>
+          </div>
+        </div>     
+        </div>
+        <%}%>
+  </div>
+</div>
+<%}%>

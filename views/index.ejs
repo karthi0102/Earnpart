@@ -1,0 +1,57 @@
+<% layout('layout/boilerplate.ejs') %>
+<style>
+    .img-fluid{
+        height: 250px;
+        width: 100%;
+    }
+</style>
+
+<div class="container my-5">
+    <form action="/sortUser" " class="d-flex">
+      <input class="form-control mx-3" name="username" style="border-radius: 20px;" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success" style="border-radius: 20px;" type="submit">Search</button>
+      <% if(uniqueSkills.length){%>
+        <div class="nav-item dropdown">
+           <a class="nav-link dropdown-toggle"  style="color:black; border: 3px solid gold; margin-left: 7px;" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+           SKILLS
+           </a>
+           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+               <% for(let skill of uniqueSkills) {%>
+                  <li> <a href="/sortskill/<%=skill%>" class="dropdown-item"><%=skill%></a> </li>
+                <%}%>   
+           </ul>
+       </div>
+         <%}%>
+    </form>
+    </div>
+   
+    <ul>
+        <% for(let f of feeds){ %>
+            <div class="card">
+                <div class="row">
+                    <div class="col-md-4">
+                        <% if(f.image.length){ %>
+                            <img src="<%=f.image[0].url%>" class="img-fluid" alt="">
+                            <%}else{%>
+                                <img src="https://images.unsplash.com/photo-1534880606858-29b0e8a24e8d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y2FtcGdyb3VuZHxlbnwwfHwwfHw%3D&w=1000&q=80" class="img-fluid" alt="">
+                                <%}%>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <p class="card-text" > <h2><a href="/account/<%=f.author._id%>" style="text-decoration: none; color: black;"><%=f.author.username%></a></h2></p>
+                            <h3 class="card-title"><%=f.domain%></h3>
+                           <p><%=f.desc%></p>
+                            <a class="btn btn-primary" href="/earn/<%=f._id%>">View POST</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <%}%>
+    </ul>
+
+    <a href="/tasks/new" class="float">
+    <i class="fas fa-clipboard-list my-float"></i>
+  </a>
+  <a href="/earn/new" class="float" style="bottom:120px;">
+    <i class="fa fa-plus my-float"></i>
+</a>

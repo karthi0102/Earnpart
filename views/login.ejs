@@ -1,0 +1,39 @@
+<% layout('layout/boilerplate.ejs') %>
+<div class="container py-5 px-5">
+    <div class="row">
+        <div class="col-6 offset-3">
+            <h1 class="text-center">LOGIN</h1>
+            <form action="/login" method="post" class="validate-form" novalidate>
+                </div><div class="mb-3">
+                    <label class="form-label" for="name">Username</label>
+                    <input class="form-control"  type="text" name="username" id="name" required>
+                    <div class="valid-feedback">
+                        LOOKS GOOD
+                    </div>
+                    <div class="invalid-feedback">
+                        Please fill
+                    </div>
+                </div><div class="mb-3">
+                    <label class="form-label" for="password">Password</label>
+                    <input class="form-control"  type="password" name="password" id="password" required>
+                    <div class="valid-feedback">
+                        LOOKS GOOD
+                    </div>
+                    <div class="invalid-feedback">
+                        Please fill
+                    </div>
+                </div>
+                <div class="mb-3">
+                <button class="btn btn-success">Login</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="container ">
+    <div class="row">
+        <div class="col-6 offset-3">
+            <p class="text-center">NOT a user <a href="/register">Sign up</a></p>
+        </div>
+    </div>
+</div>

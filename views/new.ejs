@@ -1,0 +1,38 @@
+<% layout('layout/boilerplate.ejs') %>
+<div class="container">
+    <div class="row">
+        <div class="col-6 offset-3">
+            <h1 class="text-center">NEW POST</h1>
+            <form action="/earn" method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">ADD IMAGE</label>
+                    <input class="form-control" name="image" type="file" id="formFile" multiple>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label" for="domain">DOMAIN
+                    </label>
+                    <input class="form-control" type="text" name="feeds[domain]" id="domain">
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label" for="domain">COMPANY LOCATIONS
+                    </label>
+                    <input class="form-control" type="text" name="feeds[location]" id="domain">
+                  </div>
+                <div class="mb-3">
+                <label class="form-label" for="duration">DURATION</label>
+                <div class=" input-group">
+                <input  class="form-control" type="number" name="feeds[duration]" id="duration">
+                <span class="input-group-text" id="basic-addon2">DAYS</span>
+                </div>
+                <div class="mb-3">
+                    <label class="from-label" for="desc">Description</label>
+                    <textarea class="form-control" name="feeds[desc]" id="desc" cols="3" rows="5"></textarea>
+                </div>
+              <div class="mb-3">
+                <button class="btn btn-success">CREATE</button>
+              </div>
+            </form>
+        </div>
+    </div>
+</div>
+  

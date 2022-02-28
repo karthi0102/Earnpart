@@ -1,0 +1,29 @@
+<% layout('layout/boilerplate.ejs') %>
+<style>
+    .img-fluid{
+        height: 250px;
+    }
+    </style>
+<ul>
+    <% for(let t of tasks){ %>
+        <div class="card">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <p class="card-text" > <h2><a href="/account/<%=t.author._id%>" style="text-decoration: none; color: black;"><%=t.author.username%></a></h2></p>
+                        <h3 class="card-title"><%=t.title%></h3>
+                       <p><%=t.desc%></p>
+                        <a class="btn btn-primary" href="/tasks/<%=t._id%>">VIEW TASK</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <% if(t.image.length){ %>
+                        <img src="<%=t.image[0].url%>" class="img-fluid" alt="">
+                        <%}else{%>
+                            <img src="https://images.unsplash.com/photo-1534880606858-29b0e8a24e8d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y2FtcGdyb3VuZHxlbnwwfHwwfHw%3D&w=1000&q=80" class="img-fluid" alt="">
+                            <%}%>
+                </div>
+            </div>
+        </div>
+    <%}%>
+</ul>

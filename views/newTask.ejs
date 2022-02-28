@@ -1,0 +1,33 @@
+<% layout('layout/boilerplate.ejs') %>
+<div class="container">
+    <div class="row">
+        <div class="col-6 offset-3">
+            <h1 class="text-center">NEW TASK</h1>
+            <form action="/tasks" method="post" enctype="multipart/form-data">
+               <div class="mb-3">
+                   <label class="form-label" for="title">TASK NAME</label>
+                   <input type="text" name="task[title]" class="form-control" id="title">
+               </div>
+               <div class="mb-3">
+                <label class="form-label" for="desc">DESCRIPTION</label>
+                <input type="text" name="task[desc]" class="form-control" id="desc">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="desc">STIPEND</label>
+                <input type="number" name="task[stipend]" class="form-control" id="desc">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="days">TASK DURATION</label>
+                <input type="TEXT" name="task[days]" class="form-control" placeholder="dd-mm-yy to dd-mm-yy" id="days">
+            </div>
+            <div class="mb-3">
+                <label for="formFile" class="form-label">ADD IMAGE</label>
+                <input class="form-control" name="image" type="file" id="formFile" multiple>
+              </div>
+              <div class="mb-3">
+                <button class="btn btn-success">CREATE</button>
+              </div>
+            </form>
+        </div>
+    </div>
+</div>

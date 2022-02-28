@@ -1,0 +1,20 @@
+<% layout('layout/boilerplate.ejs') %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-6 offset-3">
+            <h2 class="text-center">HIRING</h2>
+            <form action="/hired/<%=id%>/<%=taskId%>" method="post">
+                <div class="mb-3">
+                    <label class="form-label" for="amount">STIPEND TO BE PAID</label>
+                    <input class="form-control" type="number" name="stipend" id="amount">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="guide">GUIDELINES</label>
+                    <textarea class="form-control" name="guide" id="guide" cols="10" rows="10"></textarea>
+                </div>
+                <button href="/hired">HIRE HIM</button>
+            </form>
+        </div>
+    </div>
+</div>

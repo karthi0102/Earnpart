@@ -1,0 +1,65 @@
+<% layout('layout/boilerplate.ejs') %>
+<div class="container my-3">
+  <div class="row">
+    <div class="col-6 offset-3">
+      <h1 class="text-center">Create Your Account</h1>
+      <form action="/register" method="post" enctype="multipart/form-data">
+          <div class="mb-3">
+            <label for="NameInput">USERNAME</label>
+            <input type="text" id="NameInput" name="username" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label class= "form-label" for="formFile" class="form-label">PROFILE PIC</label>
+            <input class="form-control" name="image" type="file" id="formFile">
+          </div>
+          <div class="mb-3">
+            <label for="year">BIRTH YEAR</label>
+              <input type="number" minlength="4" maxlength="4" id="Year" name="year" class="form-control">
+            </div>
+          <div class="mb-3">
+            <label for="NumberInput">MOBILE NUMBER</label>
+            <input type="phone" id="NumberInput" class="form-control"name="phone" minlength="10" maxlength="10">
+          </div>
+          <div class="mb-3">
+            <label for="email">EMAIL</label>
+              <input type="email" name="email" id="MailInput" class="form-control" >
+            </div>
+            <div class="mb-3">
+              <label for="location">Location</label>
+              <input type="text" class="form-control" name="location" id="location">
+            </div>
+         <div class="mb-3">
+          <label class="form-label" for="edu">Highest Educaton Qualification:</label>
+          <select id="edu" name="qualification">
+            <option value="none" selected disabled>none</option>
+              <option value="SSLC">SSLC</option>
+              <option value="HSC">HSC</option>
+              <option value="UG">UG</option>
+              <option value="PG">PG</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="aadharNo">AADHAAR NUMBER:</label>
+            <input type="text" class="form-control" name="aadharNo" id="aadharNo">
+          </div>
+    
+          <div class="mb-3">
+            <label class="form-label" for="address">ADDRESS:</label>
+          <textarea name="address" class="form-control" id="address" cols="10" rows="5"></textarea>
+          </div>
+          
+            <div class="mb-3">
+              <label for="password">PASSWORD</label>
+              <input type="password" id="password" name="password" class="form-control">
+            </div>
+            <div class="mb-3">
+              <label for="password">CONFIRM PASSWORD</label>
+              <input type="password" id="password" name="Cpassword" class="form-control">
+            </div>
+            <div class="mb-3 ">
+              <button type="submit" class="btn btn-success">Create Account</button>
+            </div>
+        </form>
+    </div>
+  </div>
+</div>
