@@ -10,7 +10,7 @@ const upload = multer({storage })
 router.route('/')
         .get(catchAsync(feeds.indexPage))
         .post(isLoggedIn,upload.array('image'),validateCampground,catchAsync(feeds.newPost))
-router.get('/new',isLoggedIn,catchAsync(feeds.renderNewForm))
+router.get('/new',catchAsync(feeds.renderNewForm))
 
 router.route('/:id')
       .get(catchAsync(feeds.showPost))

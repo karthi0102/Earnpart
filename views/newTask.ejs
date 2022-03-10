@@ -1,8 +1,11 @@
 <% layout('layout/boilerplate.ejs') %>
 <div class="container">
     <div class="row">
-        <div class="col-6 offset-3">
-            <h1 class="text-center">NEW TASK</h1>
+        <div class="col-sm-12 col-md-6 offset-md-3">
+            <div class="card shadow">
+                <div class="card-body">
+               
+            <h3 class="text-center display-4">NEW TASK</h3>
             <form action="/tasks" method="post" enctype="multipart/form-data">
                <div class="mb-3">
                    <label class="form-label" for="title">TASK NAME</label>
@@ -24,10 +27,12 @@
                 <label for="formFile" class="form-label">ADD IMAGE</label>
                 <input class="form-control" name="image" type="file" id="formFile" multiple>
               </div>
-              <div class="mb-3">
-                <button class="btn btn-success">CREATE</button>
+              <div class="mb-3 d-grid gap-2">
+                <button class="btn btn-info">CREATE</button>
               </div>
             </form>
         </div>
     </div>
+</div>
+</div>
 </div>

@@ -1,31 +1,32 @@
 <% layout('layout/boilerplate.ejs') %>
+
+<h3 class="text-center display-4 my-5">MY ACCOUNT</h3>
 <div class="container">
-<div class="row mb-5">
-    <div class="col-6">
         <div class="card mb-3">
+          <div class="row">
+            <div class="col-md-3">
           <% user.image.forEach((img,i) => { %>
               <img src="<%= img.url %>" class="card-img-top" alt="...">
             <% }) %>
+          </div>
+          <div class="col-md-9">
             <div class="card-body">
-              <h5 class="card-title"><%=user.username%></h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <h5 class="card-title fs-3 text-uppercase"><%=user.username%></h5>
             </div>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item"><%=user.email%></li>
-              <li class="list-group-item"><%=user.phone%></li>
-              <li class="list-group-item"><%=user.qualification%></li>
-              <li class="list-group-item text-muted">Account balance : 0</li>
+              <li class="list-group-item fs-6"><b>Email : </b><%=user.email%></li>
+              <li class="list-group-item"><b>Mobile : </b><%=user.phone%></li>
+              <li class="list-group-item"><b>Education Qualification : </b><%=user.qualification%></li>
+              <li class="list-group-item text-muted"><b>Account balance : </b> 0</li>
+              <a href="/check" class="btn btn-success">Face recogonisation</a>
             </ul>
-
           </div>
-    </div>
-
-
-
-
-<div class="col-6">
+        </div>
+          </div>
+<div class="row mb-5 my-5">
+<div class="col-md-6">
   <% if(user.skill.length){ %>
-    <h2 class="text-center">SKILL SET</h2>
+    <h2 class="text-center fs-2  my-4">SKILL SET</h2>
     <%}%>
   <div class="card mb-3">
     <div class="card-body">
@@ -45,25 +46,24 @@
       </ul>
       </div>
       </div>
+</div>
+<div class="col-md-6">
 
-<h1 class="text-center">QR CODE</h1>
-    <div class="col-6 offset-4 px-5">
+<h1 class="text-center fs-2 my-4 ">QR CODE</h1>
+    <div class="col-6 offset-5  my-5">
       <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://account/&amp;size=100x100"  alt="">
     </div>
+    <div class="text-center fs-5 fw-bold">Scan to view profile</div>
     </div>
 </div>
 
-<div class="container mb-5">
-  <div class="row">
-    
-  </div>
-</div>
 <% if(user.feeds.length){%>
-<div class="container">
-  <h2 class="text-center">Posts</h2>
-  <div class="row">
+<div class="container my-5">
+  <h2 class="text-center my-5 pb-5">POST</h2>
       <% for(feed of user.feeds) {%>
-        <div class="col-lg-4 col-md-12">
+        <div class="row">
+          
+        <div class=" col-md-4">
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
             <% feed.image.forEach((img,i) => { %>
@@ -83,6 +83,8 @@
           </button>
           <%}%> 
         </div>
+        </div>
+        <div class="col-md-8">
           <div class="card mb-3" >
               <div class="card-body">
                   <div class="card-body">
@@ -101,19 +103,19 @@
                     </div>
                   </div>
                   </div>
+                  </div>
                 </div>
+              </div>
     <%}%>
-  </div>
-</div>
-<div>
+  
 </div>
 <%}%>
 <%if(user.task.length){%>
-<div class="container">
-  <div class="row">
-    <h2 class="text-center">MY TASKS</h2>
+<div class="container my-5">
+    <h2 class="text-center my-5">MY TASKS</h2>
+    <div class="row">
     <% for(let task of user.task){ %>
-      <div class="col-6 mt-3">
+      <div class="col-md-6 mt-3">
       <div class="card mb-5">
         <img src="<%=task.image[0].url%>" class="card-img-top" alt="">
         <div class="card-body">
@@ -132,23 +134,23 @@
   </div>
 </div>
 </div>
-</div>
       <%}%>
   </div>
 </div>
 <%}%>
+
 <%if(user.given.length){%>
-<div class="container">
+<div class="container my-5">
+  <h2 class="text-center my-5">HIRED TASKS</h2>
   <div class="row">
-    <h2 class="text-center">HIRED TASKS</h2>
       <% for(let t of user.given){ %>
-        <div class="col-4">
+        <div class="col-md-4">
         <div class="card mb-3">
           <div class="card-body">
-            <h2 class="card-title"><%=t.title%></h2>
+            <h2 class="card-title pb-3"><%=t.title%></h2>
+            <p class="card-text fw-normal fs-5"><%=t.desc%></p>
             <p class="card-text"><%=t.guide%></p>
-            <p class="card-text"><%=t.desc%></p>
-            <a href="/progress" class="btn btn-primary">Completed</a>
+            <a href="/" class="btn btn-primary">VIEW</a>
           </div>
         </div>     
         </div>

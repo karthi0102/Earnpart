@@ -1,8 +1,26 @@
 <% layout('layout/boilerplate.ejs') %>
+<style>
+  label{
+    font-size: 20px;
+  }
+  body{
+    background-color: lightcyan;
+  }
+  .old{
+        padding-top: 15px;
+    }
+    .old a{
+        text-decoration: none;
+        color:black;
+    }
+  
+</style>
 <div class="container my-3">
   <div class="row">
-    <div class="col-6 offset-3">
-      <h1 class="text-center">Create Your Account</h1>
+    <div class="col-sm-12 col-md-6 offset-md-3">
+<div class="card shadow">
+  <div class="card-body">
+      <h1 class="text-center mb-3">EARNPART REGISTRATION</h1>
       <form action="/register" method="post" enctype="multipart/form-data">
           <div class="mb-3">
             <label for="NameInput">USERNAME</label>
@@ -56,10 +74,16 @@
               <label for="password">CONFIRM PASSWORD</label>
               <input type="password" id="password" name="Cpassword" class="form-control">
             </div>
-            <div class="mb-3 ">
-              <button type="submit" class="btn btn-success">Create Account</button>
+            <div class="mb-3 d-grid gap-2 ">
+              <button type="submit" class="btn btn-info">Create Account</button>
             </div>
         </form>
+        <div class="old text-center">
+          <a href="/login"><i class="fa-solid fa-person-hiking"></i> Already a Explorer</a>
+      </div>
     </div>
   </div>
+</div>
+
+</div>
 </div>

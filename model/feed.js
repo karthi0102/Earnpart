@@ -6,6 +6,7 @@ const ImageSchema =  new Schema({
     filename:String,
 })
 const feedSchema = new Schema({
+    title:String,
     image:[ImageSchema],
     domain:{
         type:String,
@@ -45,7 +46,6 @@ feedSchema.post('findOneAndDelete', async (data)=>{
         await Review.deleteMany({
             _id :{
                 $in:data.reviews
-
             }
         })
     }

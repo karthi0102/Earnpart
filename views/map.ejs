@@ -1,5 +1,14 @@
 <% layout('layout/boilerplate.ejs') %>
+<style>
+      
+      #map{
+            border-radius: 20px;
+            border:5px solid rgb(20, 159, 223);
+      }
+</style>
+<div class="container">
 <div id="map" style="height:600px;width:100%;"></div>
+</div>
 <script>
       const user= {features: <%- JSON.stringify(user) %>}
 </script>

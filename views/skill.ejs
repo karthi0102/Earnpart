@@ -16,18 +16,16 @@
         text-decoration: none;
         color:blueviolet
     }
-    a:hover{
-        color:black;
-    }
+   
     .img{
-        border-right: 2px solid violet;
+        border-right: 2px solid rgb(20, 159, 223);
     }
 </style>
 <ul>
     <% for(let profile of uniqueProfile){%>
         <div class="row mb-3 mb-1" >
             <div class="col-2 offset-3 img"><a href="/account/<%=profile._id%>"><img src="<%=profile.image[0].url%>" class="img-thumnail" alt=""></a></div>
-       <div class="col-2 mt-5 name"><h2 class="text-muted text-center"><a href="/account/<%=profile._id%>"><%=profile.username%></a></h2></div>
+       <div class="col-2 mt-5 name"><h2 class="text-muted text-center text-uppercase"><a href="/account/<%=profile._id%>"><%=profile.username%></a></h2></div>
             
             
         </div>

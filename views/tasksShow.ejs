@@ -16,6 +16,9 @@
                     <li class="list-group-item text-muted">POSTED BY - <%=task.author.username%></li>
                     <li class="list-group-item text-muted"><%=task.days%>days</li>
                   </ul>
+                  <form class="d-inline" action="/task/<%=task._id%>?_method=DELETE" method="POST">
+                    <button class="btn btn-danger">Delete</button>
+                </form>
                  
                   <% for( let apply of task.applier ) { %>
                     <% if(apply.email==currentUser.email){ %>

@@ -1,9 +1,22 @@
 <% layout('layout/boilerplate.ejs') %>
+<style>
+  label{
+    font-size: 20px;
+  }
+</style>
 <div class="container">
-    <div class="row">
-        <div class="col-6 offset-3">
-            <h1 class="text-center">NEW POST</h1>
+    <div class="row my-5">
+        <div class="col-sm-12 col-md-6 offset-md-3">
+          <div class="card shadow">
+            <div class="card-body">
+
+          
+            <h5 class="text-center display-4 text-info">NEW POST</h5>
             <form action="/earn" method="post" enctype="multipart/form-data">
+              <div class="mb-3">
+                <label for="title" class="form-label">TITLE</label>
+                <input type="text" name="feeds[title]" id="title" class="form-control">
+              </div>
                 <div class="mb-3">
                     <label for="formFile" class="form-label">ADD IMAGE</label>
                     <input class="form-control" name="image" type="file" id="formFile" multiple>
@@ -28,11 +41,12 @@
                     <label class="from-label" for="desc">Description</label>
                     <textarea class="form-control" name="feeds[desc]" id="desc" cols="3" rows="5"></textarea>
                 </div>
-              <div class="mb-3">
-                <button class="btn btn-success">CREATE</button>
+              <div class="mb-3 d-grid gap-2">
+                <button class="btn btn-info">CREATE</button>
               </div>
             </form>
         </div>
     </div>
 </div>
-  
+</div>
+</div>

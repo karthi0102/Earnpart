@@ -60,7 +60,9 @@ app.use('/',userRoute)
 app.use('/earn',Feeds)
 app.use('/earn/:id/reviews',Reviews)
 
-
+app.get('/',(req,res)=>{
+    res.render("home")
+})
 
 app.get('/account',async(req,res)=>{
     if(!req.isAuthenticated()){
@@ -137,6 +139,12 @@ app.post('/tasks',upload.array('image'),async(req,res)=>{
     console.log(task)
     req.flash('success','Successfully Post is created')
     res.redirect(`/tasks`)
+})
+app.delete('/task/:id',async(req,res)=>{
+    const {id}=req.params;
+    await Task.findByIdAndDelete(id);
+    req.flash('success','Successfully deleted');
+    res.redirect('/tasks')
 })
 app.get('/apply/:taskId/hire/:applyId',async (req,res)=>{
     const {taskId,applyId} = req.params

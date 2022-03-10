@@ -5,6 +5,7 @@ module.exports.feedSchema= Joi.object({
         desc:Joi.string().required(),
         location:Joi.string().required(),
         domain:Joi.string().required(),
+        title:Joi.string().required(),
     }).required()  
 })
 

@@ -1,39 +1,65 @@
 <% layout('layout/boilerplate.ejs') %>
-<div class="container py-5 px-5">
+<style>
+    .img{
+        height: 300px;
+        width: 100%;
+    }
+    .new{
+        padding-top: 15px;
+    }
+    .new a{
+        text-decoration: none;
+        color:black;
+    }
+
+</style>
+<div class="container my-5">
     <div class="row">
-        <div class="col-6 offset-3">
-            <h1 class="text-center">LOGIN</h1>
-            <form action="/login" method="post" class="validate-form" novalidate>
-                </div><div class="mb-3">
-                    <label class="form-label" for="name">Username</label>
-                    <input class="form-control"  type="text" name="username" id="name" required>
-                    <div class="valid-feedback">
-                        LOOKS GOOD
-                    </div>
-                    <div class="invalid-feedback">
-                        Please fill
-                    </div>
-                </div><div class="mb-3">
-                    <label class="form-label" for="password">Password</label>
-                    <input class="form-control"  type="password" name="password" id="password" required>
-                    <div class="valid-feedback">
-                        LOOKS GOOD
-                    </div>
-                    <div class="invalid-feedback">
-                        Please fill
-                    </div>
+        <div class="col-sm-12 col-md-4 offset-md-4">
+            <div class="card shadow mt-5">
+                <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8c3R1ZGVudCUyMGVhcm5pbmd8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60" alt="" class="card-img-top img" />
+                <div class="card-body">
+                    <p class="display-6 text-center hello"> <p>
+                    <h5 class="card-title text-center">LOGIN Earnpart</h5>
+                    <form action="/login" method="POST" class="validated-form" novalidate autocomplete="off">
+                        <div class="mb-3">
+                            <label class="form-label" for="username">Username</label>
+                            <input  class="form-control user" type="text" id="username" name="username" autofocus required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="password">Password</label>
+                            <input class="form-control" type="password" id="password" name="password" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-info btn-block">Start Exploring</button>
+                        </div>
+                        
+                    </form>
+                    <div class="text-center new">
+                    <a href="/register"><i class="fa-solid fa-users"></i> NEW USER</a>
                 </div>
-                <div class="mb-3">
-                <button class="btn btn-success">Login</button>
+                </div>
             </div>
-            </form>
         </div>
     </div>
 </div>
-<div class="container ">
-    <div class="row">
-        <div class="col-6 offset-3">
-            <p class="text-center">NOT a user <a href="/register">Sign up</a></p>
-        </div>
-    </div>
-</div>
+
+<script>
+    const h= document.querySelector('.hello');
+    const i = document.querySelector('.user');
+    i.addEventListener('input',()=>{
+        if(i.value==''){
+        h.textContent=" ";
+        }else{
+            h.textContent=`Hello ${i.value}..!`
+        }
+    })
+    
+</script>

@@ -1,9 +1,19 @@
 <% layout('layout/boilerplate.ejs') %>
 <link rel="stylesheet" href='/stylesheets/star.css'>
+<style>
+  .text{
+    font-size: 30px;
+  }
+  .carousel-inner img{
+    height: 500px;
+    border-radius: 40px;
+    border:5px solid rgb(20, 159, 223);
+  }
 
-<!-- <div id='map' style='width: 400px; height: 300px;'></div> -->
+</style>
+<div class="container">
     <div class="row mb-5">
-    <div class="col-6">
+    <div class="col-lg-12  o">
       <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
           <% feed.image.forEach((img,i) => { %>
@@ -23,15 +33,23 @@
         </button>
         <%}%> 
       </div>
+      </div>
+      </div>
+    <div class="row">
+      <h2 class="text-center display-3"><%=feed.title%></h2>
+      <h3 class="text-center text-muted display-5"><%=feed.domain%></h3>
+    </div>
+    <div class="col-lg-10 offset-lg-1">
         <div class="card mb-3" >
             <div class="card-body">
                 <div class="card-body">
-                    <p class="card-text"><%=feed.desc%></p>
+                    <p class="text"><%=feed.desc%></p>
+
                   </div>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item text-muted"><%=feed.author.username%></li>
-                    <li class="list-group-item text-muted"><%=feed.duration%>days</li>
-                  </ul>
+                  <h5>Company:<%=feed.location%></h5>
+                  <h5 class="display-6">Posted by : <%=feed.author.username%></h5>
+                  <h5 class="display-6">Duration : <%=feed.duration%></h5>
+                  
                   <% if(currentUser && feed.author.equals(currentUser._id)){%>
                   "card-body">
                     <a href="/earn/<%=feed._id%>/edit" class="c<div class=ard-link btn btn-info">Edit</a>
@@ -43,7 +61,8 @@
                 <%}%>
                 </div>
 </div>
-    <div class="col-6">
+</div>
+    <div class="col-lg-6">
       <% if(currentUser) {%>
     <h2>LEAVE A REVIEW</h2>
     <form action="/earn/<%=feed._id%>/reviews" method="POST" class='mb-3 validate-form' novalidate>
@@ -92,3 +111,4 @@
 </div>
 </div>
    
+</div>

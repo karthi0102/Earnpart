@@ -86,7 +86,9 @@ console.log(fullQuality);
       console.log(result.toString().slice(0,6))
       if(result.toString().slice(0,6)==='unknow')
       {
-        alert('hii');
+        alert('Another person found');
+      }else{
+        alert("face matched proceed")
       }
       const drawBox = new faceapi.draw.DrawBox(box, { label: result.toString() })
       drawBox.draw(canvas)
